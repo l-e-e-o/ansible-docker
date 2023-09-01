@@ -1,0 +1,14 @@
+- name: Check if docker is already installed
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ docker_packages }}"
+  check_mode: yes
+  register: installed
+
+- name: Installation tasks for Ubuntu
+  ansible.builtin.include_tasks: setup/ubuntu.yaml
+  when:
+    - installed.changed
+    - ansible_distribution == "Ubuntu"

@@ -1,0 +1,10 @@
+- name: Update apt cache
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Restart docker
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    state: restarted

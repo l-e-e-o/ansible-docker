@@ -1,0 +1,26 @@
+- name: Verify OS support
+  ansible.builtin.assert:
+    that: 
+      - ansible_distribution in docker_supported_os
+      - ansible_distribution_version in docker_supported_os[ansible_distribution].versions
+    fail_msg: "{{ ansible_distribution }} {{ ansible_distribution_version }} is not supported by this role.  For supported distributions/versions see vars/main.yaml"
+    quiet: true
+
+- name: Verify architecture support
+  ansible.builtin.assert:
+    that: 
+      - ansible_distribution in docker_supported_os
+      - ansible_architecture in docker_supported_os[ansible_distribution].arch
+    fail_msg: "{{ ansible_distribution }} {{ ansible_architecture }} is not supported by this role.  For supported distributions/versions see vars/main.yaml"
+    quiet: true
+
+- name: Resolve OS-specific variables
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_facts['distribution'] | lower }}_{{ ansible_facts['distribution_version'] | lower }}.yaml"
+    - "{{ ansible_facts['distribution'] | lower }}_{{ ansible_facts['distribution_major_version'] | lower }}.yaml"
+    - "{{ ansible_facts['distribution'] | lower }}.yaml"
+    - "{{ ansible_facts['os_family'] | lower }}_{{ ansible_facts['distribution_major_version'] | lower }}.yaml"
+    - "{{ ansible_facts['os_family'] | lower }}.yaml"
+  tags:
+    - always

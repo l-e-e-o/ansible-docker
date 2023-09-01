@@ -1,0 +1,25 @@
+- name: Perform validation checks
+  ansible.builtin.include_tasks: 
+    file: preflight.yml
+    apply:
+      tags:
+        - always
+  tags:
+    - always
+
+- include_tasks: setup.yaml
+
+- name: Set docker daemon config
+  become: true
+  ansible.builtin.template:
+    dest: /etc/docker/daemon.json
+    src: docker-daemon.json.j2
+    backup: yes
+  notify: Restart docker
+
+- name: Ensure docker is running
+  become: true
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes

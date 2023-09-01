@@ -1,0 +1,6 @@
+docker_legacy_packages:
+  - docker
+  - docker-engine
+  - docker.io
+  - containerd
+  - runc
