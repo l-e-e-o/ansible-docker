@@ -6,7 +6,13 @@
   tags:
     - always
 
-- include_tasks: setup.yaml
+- name: Perform validation checks
+  ansible.builtin.include_tasks:
+    file: setup.yaml
+    apply:
+      tags: docker-setup
+  tags:
+    - docker-setup
 
 - name: Set docker daemon config
   become: true
