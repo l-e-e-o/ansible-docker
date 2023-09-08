@@ -22,3 +22,6 @@
     name: docker
     state: started
     enabled: true
+
+- name: Flush handlers
+  meta: flush_handlers
