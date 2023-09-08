@@ -30,12 +30,7 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: absent
-  with_items:
-    - docker
-    - docker-engine
-    - docker.io
-    - containerd
-    - runc
+  loop: "{{ docker_legacy_packages }}"
 
 - name: Ubuntu | Update package manager cache if necessary
   meta: flush_handlers
@@ -45,8 +40,4 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
-  with_items:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - docker-compose-plugin
+  loop: "{{ docker_packages }}"
