@@ -41,3 +41,23 @@
     name: "{{ item }}"
     state: present
   loop: "{{ docker_packages }}"
+
+- name: Ubuntu | Ensure 'docker' python package is installed (required for Ansible)
+  become: true
+  ansible.builtin.package:
+    name: python3-docker
+    state: present
+
+- name: Ubuntu | Ensure python pip is installed (required for Ansible)
+  become: true
+  ansible.builtin.package:
+    name: "python3-pip"
+    state: present
+  when: '"docker-compose-plugin" in docker_packages'
+
+- name: Ubuntu | Ensure python package for docker-compose is installed (required for Ansible)
+  become: true
+  ansible.builtin.pip:
+    name: "docker-compose"
+    state: present
+  when: '"docker-compose-plugin" in docker_packages'
