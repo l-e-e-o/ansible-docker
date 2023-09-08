@@ -3,5 +3,19 @@
   "log-opts": {
     "max-size": "{{ docker_log_max_size }}",
     "max-file": "{{ docker_log_max_file }}"
+  }{% if http_proxy or https_proxy or no_proxy %},
+  "proxies": {
+{% if http_proxy %}
+    "http-proxy": "{{ http_proxy }}"{% if https_proxy or no_proxy %},{% endif %}
+
+{% endif %}
+{% if https_proxy %}
+    "https-proxy": "{{ https_proxy }}"{% if no_proxy %},{% endif %}
+
+{% endif %}
+{% if no_proxy %}
+    "no-proxy": "{{ no_proxy }}"
+{% endif %}
   }
+{% endif %}
 }
