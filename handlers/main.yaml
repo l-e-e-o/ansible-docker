@@ -1,9 +1,9 @@
-- name: Update apt cache
+- name: "docker : Update apt cache"
   become: true
   ansible.builtin.apt:
     update_cache: true
 
-- name: Restart docker
+- name: "docker : Restart docker"
   become: true
   ansible.builtin.systemd:
     name: docker

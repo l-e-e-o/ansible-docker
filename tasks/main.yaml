@@ -20,7 +20,7 @@
     dest: /etc/docker/daemon.json
     src: docker-daemon.json.j2
     backup: true
-  notify: Restart docker
+  notify: "docker : Restart docker"
 
 - name: Ensure docker is running
   become: true
