@@ -5,6 +5,7 @@ docker_supported_os:
       - '22.04'
       - '22.10'
       - '23.04'
+      - '24.04'
     arch:
       x86_64: amd64
       armv6l: armhf
