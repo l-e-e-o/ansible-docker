@@ -21,7 +21,7 @@
   become: true
   ansible.builtin.apt_repository:
     filename: docker
-    repo: "deb [arch={{ docker_supported_os[ansible_distribution].arch[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    repo: "deb [arch={{ docker_supported_os[ansible_facts['distribution']].arch[ansible_facts['architecture']] }} signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['lsb']['codename'] }} stable"
   notify: "docker : Update apt cache"
 
 - name: Ubuntu | Ensure no legacy docker is installed

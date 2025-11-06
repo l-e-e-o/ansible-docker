@@ -6,4 +6,4 @@
   tags:
     - docker-setup
   when:
-    - ansible_distribution == "Ubuntu"
+    - ansible_facts['distribution'] == "Ubuntu"
