@@ -1,16 +1,16 @@
 - name: Verify OS support
   ansible.builtin.assert:
     that: 
-      - ansible_facts['distribution'] in docker_supported_os
-      - ansible_facts['distribution_version'] in docker_supported_os[ansible_facts['distribution']].versions
+      - ansible_facts['distribution'] in docker__supported_os
+      - ansible_facts['distribution_version'] in docker__supported_os[ansible_facts['distribution']].versions
     fail_msg: "{{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }} is not supported by this role.  For supported distributions/versions see vars/main.yaml"
     quiet: true
 
 - name: Verify architecture support
   ansible.builtin.assert:
     that: 
-      - ansible_facts['distribution'] in docker_supported_os
-      - ansible_facts['architecture'] in docker_supported_os[ansible_facts['distribution']].arch
+      - ansible_facts['distribution'] in docker__supported_os
+      - ansible_facts['architecture'] in docker__supported_os[ansible_facts['distribution']].arch
     fail_msg: "{{ ansible_facts['distribution'] }} {{ ansible_facts['architecture'] }} is not supported by this role.  For supported distributions/versions see vars/main.yaml"
     quiet: true
 

@@ -1,4 +1,4 @@
-docker_supported_os:
+docker__supported_os:
   Ubuntu:
     versions:
       - '20.04'

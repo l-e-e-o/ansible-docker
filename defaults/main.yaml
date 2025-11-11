@@ -1,17 +1,17 @@
 # Supported: 'ce' (Community Edition) or 'ee' (Enterprise Edition)
-docker_edition: 'ce'
+docker__edition: 'ce'
 
-docker_packages:
-  - "docker-{{ docker_edition }}"
-  - "docker-{{ docker_edition }}-cli"
+docker__packages:
+  - "docker-{{ docker__edition }}"
+  - "docker-{{ docker__edition }}-cli"
   - "containerd.io"
   - "docker-buildx-plugin"
   - "docker-compose-plugin"
 
-docker_log_max_size: "10m"
-docker_log_max_file: "3"
-docker_mtu: 0  # "undefined"
+docker__log_max_size: "10m"
+docker__log_max_file: "3"
+docker__mtu: 0  # "undefined"
 
-http_proxy: ""
-https_proxy: ""
-no_proxy: ""
+docker__http_proxy: ""
+docker__https_proxy: ""
+docker__no_proxy: ""

@@ -1,4 +1,4 @@
-docker_legacy_packages:
+docker__legacy_packages:
   - docker
   - docker-engine
   - docker.io
