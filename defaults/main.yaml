@@ -10,6 +10,7 @@ docker_packages:
 
 docker_log_max_size: "10m"
 docker_log_max_file: "3"
+docker_mtu: 0  # "undefined"
 
 http_proxy: ""
 https_proxy: ""

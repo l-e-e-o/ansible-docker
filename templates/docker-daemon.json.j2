@@ -3,7 +3,12 @@
   "log-opts": {
     "max-size": "{{ docker_log_max_size }}",
     "max-file": "{{ docker_log_max_file }}"
-  }{% if http_proxy or https_proxy or no_proxy %},
+  }{% if (docker_mtu | int) > 0 %},
+  "default-network-opts": {
+    "bridge": {
+      "com.docker.network.driver.mtu": "{{ docker_mtu }}"
+    }
+  }{% endif %}{% if http_proxy or https_proxy or no_proxy %},
   "proxies": {
 {% if http_proxy %}
     "http-proxy": "{{ http_proxy }}"{% if https_proxy or no_proxy %},{% endif %}
